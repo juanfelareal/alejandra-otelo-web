@@ -74,4 +74,13 @@ píxel está pegado; no hay que hacer nada más:
 
 ## Publicación
 
-GitHub Pages publica automáticamente la rama `main` cada vez que se guarda un cambio.
+alejandraotelo.com se sirve desde **Cloudflare Pages** (proyecto `alejandra-otelo`).
+Por ahora ese proyecto **no** está conectado a este repositorio: guardar cambios
+aquí no los publica en el dominio. Para publicar, desde un computador con el repo:
+
+```bash
+npx wrangler pages deploy <carpeta-con-index.html-y-assets> --project-name alejandra-otelo --branch main
+```
+
+(Sube solo `index.html` y `assets/`.) La copia de GitHub Pages
+(juanfelareal.github.io/alejandra-otelo-web) es solo una vista previa.
