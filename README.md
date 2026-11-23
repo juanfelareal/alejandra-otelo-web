@@ -75,12 +75,13 @@ píxel está pegado; no hay que hacer nada más:
 ## Publicación
 
 alejandraotelo.com se sirve desde **Cloudflare Pages** (proyecto `alejandra-otelo`).
-Por ahora ese proyecto **no** está conectado a este repositorio: guardar cambios
-aquí no los publica en el dominio. Para publicar, desde un computador con el repo:
+**Cada cambio que se guarda en la rama `main` de este repositorio se publica solo**
+en el dominio en 1–2 minutos (GitHub Action "Publicar en alejandraotelo.com",
+pestaña *Actions*). Solo se publican `index.html` y la carpeta `assets/`.
 
-```bash
-npx wrangler pages deploy <carpeta-con-index.html-y-assets> --project-name alejandra-otelo --branch main
-```
-
-(Sube solo `index.html` y `assets/`.) La copia de GitHub Pages
-(juanfelareal.github.io/alejandra-otelo-web) es solo una vista previa.
+- Si la publicación falla, sale una ✗ roja en la pestaña *Actions* y el sitio
+  sigue mostrando la última versión buena.
+- Para volver a publicar sin cambiar nada: *Actions* → "Publicar en
+  alejandraotelo.com" → *Run workflow*.
+- La copia de GitHub Pages (juanfelareal.github.io/alejandra-otelo-web) es solo
+  una vista previa.

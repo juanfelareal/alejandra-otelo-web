@@ -1,0 +1,33 @@
+# Publica alejandraotelo.com en Cloudflare Pages (proyecto "alejandra-otelo")
+# cada vez que se guarda un cambio en la rama main.
+name: Publicar en alejandraotelo.com
+
+on:
+  push:
+    branches: [main]
+    paths: ["index.html", "assets/**", ".github/workflows/publicar.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: publicar
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Solo sale al público la página y sus fotos/tipografías.
+      - name: Armar la carpeta a publicar
+        run: |
+          mkdir sitio
+          cp index.html sitio/
+          cp -R assets sitio/
+
+      - name: Subir a Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy sitio --project-name=alejandra-otelo --branch=main --commit-dirty=true
